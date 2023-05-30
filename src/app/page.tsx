@@ -1,14 +1,17 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { cookies } from 'next/dist/client/components/headers'
 
 import { EmptyMemories } from '@/components/EmptyMemories'
 import { api } from '@/lib/api'
-import { cookies } from 'next/dist/client/components/headers'
+
+import { ArrowRight } from 'lucide-react'
 
 import dayjs from 'dayjs'
 import ptBr from 'dayjs/locale/pt-br'
 
 dayjs.locale(ptBr)
-interface MemoriesProps {
+export interface MemoriesProps {
   id: string
   coverUrl: string
   excerpt: string
@@ -49,8 +52,16 @@ export default async function Home() {
             src={memory.coverUrl}
             height={280}
             alt="image memory"
+            className="rounded"
           />
           <p>{memory.excerpt}</p>
+          <Link
+            href={`/memory/${memory.id}`}
+            className="hover: flex items-center gap-2 text-sm text-gray-100 hover:text-gray-200"
+          >
+            Ler mais
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       ))}
     </div>

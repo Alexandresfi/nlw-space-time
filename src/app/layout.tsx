@@ -34,18 +34,20 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${roboto.variable} ${baiJamjuree.variable} bg-gray-900 font-sans text-gray-100`}
       >
-        <main className="grid min-h-screen grid-cols-2">
+        <main className="grid min-h-screen grid-cols-1 md:grid-cols-2">
           {/* {left} */}
-          <div className="relative flex flex-col items-start justify-between overflow-hidden border-r border-white/10 bg-[url(../assets/bg-stars.svg)] bg-cover px-28 py-16">
+          <div className="relative flex flex-col items-start justify-between overflow-hidden border-r border-white/10 bg-[url(../assets/bg-stars.svg)] bg-cover px-14 py-16 md:p-28">
             {/* {Blur} */}
             <div className=" absolute right-0 top-1/2 h-[288px] w-[526px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-purple-700 opacity-50 blur-full" />
             {/* {Stripes} */}
-            <div className="absolute bottom-0 right-2 top-0 w-2 bg-stripes" />
+            <div className="absolute bottom-0 right-2 top-0 hidden w-2 bg-stripes md:block" />
             {isAuthenticated ? <Profile /> : <SingIn />}
             <Hero />
             <Copyright />
           </div>
-          <div className="flex flex-col bg-[url(../assets/bg-stars.svg)] bg-cover">
+          {/* Right */}
+          <div className="flex max-h-screen flex-col overflow-y-scroll bg-[url(../assets/bg-stars.svg)] bg-cover">
+            <div className="absolute -bottom-full left-2 top-[60%] block w-2 bg-stripes md:hidden" />
             {children}
           </div>
         </main>
